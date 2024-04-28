@@ -10,9 +10,11 @@ export default function Signup(){
   const BASE_URL = process.env.REACT_APP_API_BASE_URL;
   useEffect(() => {
     axios.get(`${BASE_URL}/csrf-token`).then(response => {
-      setCsrfToken(response.data.csrf_token);
+      setCsrfToken(response.data.csrf_token); // Set CSRF token from server response
+      console.log("Successfully fetched CSRF token!");
+    }).catch(error => {
+      console.error("Failed to fetch CSRF token:", error);
     });
-    console.log("successfully fetched CSRF token!")
   }, []);
 
   const [email,setEmail] = useState('');
@@ -47,7 +49,10 @@ export default function Signup(){
       }
       else navigate('/');
     })
-    .catch((error) => alert("An unexpected error occurred. Please try again later."));
+    .catch((error) => {
+      console.error("Error details:", error.response);
+      alert("An unexpected error occurred. Please try again later.");
+    });
   };
 
   return (
