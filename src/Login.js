@@ -12,6 +12,7 @@ export default function Signup(){
     axios.get(`${BASE_URL}/csrf-token`).then(response => {
       setCsrfToken(response.data.csrf_token);
     });
+    console.log("successfully fetched CSRF token!")
   }, []);
 
   const [email,setEmail] = useState('');
