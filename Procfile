@@ -1,1 +1,0 @@
-web: cd react-flask-app/frontend && yarn start
